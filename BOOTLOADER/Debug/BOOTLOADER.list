@@ -35,17 +35,17 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  15 .debug_rnglists 00000a66  00000000  00000000  0001ea20  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0001838d  00000000  00000000  0001f486  2**0
+ 16 .debug_macro  00018393  00000000  00000000  0001f486  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00013cc3  00000000  00000000  00037813  2**0
+ 17 .debug_line   00013cc3  00000000  00000000  00037819  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00089a9d  00000000  00000000  0004b4d6  2**0
+ 18 .debug_str    00089ac2  00000000  00000000  0004b4dc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000d4f73  2**0
+ 19 .comment      00000043  00000000  00000000  000d4f9e  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000037cc  00000000  00000000  000d4fb8  2**2
+ 20 .debug_frame  000037cc  00000000  00000000  000d4fe4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000005e  00000000  00000000  000d8784  2**0
+ 21 .debug_line_str 0000005e  00000000  00000000  000d87b0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -776,7 +776,7 @@ void goToApplication(void)
  8000766:	f44f 5100 	mov.w	r1, #8192	@ 0x2000
  800076a:	4813      	ldr	r0, [pc, #76]	@ (80007b8 <goToApplication+0x88>)
  800076c:	f000 fdae 	bl	80012cc <HAL_GPIO_WritePin>
-	void(*appliactionResetHanlder)(void) = (void*)*(volatile uint32_t*) (0x08040000 + 4);
+	void(*appliactionResetHanlder)(void) = (void*)*(volatile uint32_t*) (APPLICATION_FLASH_ADDRESS + 4);
  8000770:	4b12      	ldr	r3, [pc, #72]	@ (80007bc <goToApplication+0x8c>)
  8000772:	681b      	ldr	r3, [r3, #0]
  8000774:	61fb      	str	r3, [r7, #28]
@@ -785,7 +785,7 @@ void goToApplication(void)
  8000776:	f002 fd0b 	bl	8003190 <HAL_RCC_DeInit>
 	  HAL_DeInit();
  800077a:	f000 f951 	bl	8000a20 <HAL_DeInit>
-	  __set_MSP(*(volatile uint32_t*) 0x08040000);
+	  __set_MSP(*(volatile uint32_t*) APPLICATION_FLASH_ADDRESS);
  800077e:	4b10      	ldr	r3, [pc, #64]	@ (80007c0 <goToApplication+0x90>)
  8000780:	681b      	ldr	r3, [r3, #0]
  8000782:	61bb      	str	r3, [r7, #24]
@@ -825,8 +825,8 @@ __STATIC_FORCEINLINE void __set_MSP(uint32_t topOfMainStack)
  80007b0:	20000118 	.word	0x20000118
  80007b4:	20000168 	.word	0x20000168
  80007b8:	40020c00 	.word	0x40020c00
- 80007bc:	08040004 	.word	0x08040004
- 80007c0:	08040000 	.word	0x08040000
+ 80007bc:	08010004 	.word	0x08010004
+ 80007c0:	08010000 	.word	0x08010000
  80007c4:	e000e010 	.word	0xe000e010
 
 080007c8 <Error_Handler>:

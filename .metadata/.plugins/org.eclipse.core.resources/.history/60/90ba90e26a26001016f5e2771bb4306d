@@ -34,7 +34,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 //#define SENDDATA(buf, len)  CDC_Transmit_FS((uint8_t*)(buf), (len))
-#define APPLICATION_FLASH_ADDRESS 0x08010000
+#define APPLICATION_FLASH_ADRESS 0x08010000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -230,11 +230,11 @@ void goToApplication(void)
 	USBD_DeInit(&hUsbDeviceFS);
 	HAL_UART_DeInit(&huart2);
 	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
-	void(*appliactionResetHanlder)(void) = (void*)*(volatile uint32_t*) (APPLICATION_FLASH_ADDRESS + 4);
+	void(*appliactionResetHanlder)(void) = (void*)*(volatile uint32_t*) (0x08010000 + 4);
 
 	  HAL_RCC_DeInit();
 	  HAL_DeInit();
-	  __set_MSP(*(volatile uint32_t*) APPLICATION_FLASH_ADDRESS);
+	  __set_MSP(*(volatile uint32_t*) 0x08010000);
 	  SysTick->CTRL = 0;
 	  SysTick->LOAD = 0;
 	  SysTick->VAL = 0;
