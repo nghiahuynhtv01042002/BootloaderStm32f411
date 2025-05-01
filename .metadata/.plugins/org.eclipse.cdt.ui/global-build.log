@@ -1,0 +1,16 @@
+15:31:45 **** Build of configuration Debug for project APPLICATION ****
+make -j8 all 
+arm-none-eabi-gcc -o "APPLICATION.elf" @"objects.list"   -mcpu=cortex-m4 -T"G:\stm32cubeide\workspace\BootLoader\APPLICATION\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="APPLICATION.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: APPLICATION.elf
+ 
+arm-none-eabi-size  APPLICATION.elf 
+arm-none-eabi-objdump -h -S APPLICATION.elf  > "APPLICATION.list"
+arm-none-eabi-objcopy  -O binary APPLICATION.elf  "APPLICATION.bin"
+   text	   data	    bss	    dec	    hex	filename
+  30264	    252	   8780	  39296	   9980	APPLICATION.elf
+Finished building: default.size.stdout
+ 
+Finished building: APPLICATION.bin
+ 
+Finished building: APPLICATION.list
+ 
